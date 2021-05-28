@@ -1,0 +1,28 @@
+# This file is to setup Ubuntu VM servers
+Vagrant.configure("2") do |config|
+  vm_box = "ubuntu/xenial64"
+  
+  # setup vm1
+  config.vm.define "landing-page" do |landingpage|
+    landingpage.vm.box = vm_box
+    landingpage.vm.hostname = 'landing-page'
+    landingpage.vm.network "private_network", ip: "192.168.56.105"
+	landingpage.vm.provision :shell, path: "script/landing-page.sh"
+  end
+  
+  # setup vm2
+  config.vm.define "wordpress" do |wordpress|
+    wordpress.vm.box = vm_box
+    wordpress.vm.hostname = 'wordpress'
+    wordpress.vm.network "private_network", ip: "192.168.56.106"
+	wordpress.vm.provision :shell, path: "script/wordpress.sh"
+  end
+  
+  # setup vm3
+  config.vm.define "social-media" do |socialmedia|
+    socialmedia.vm.box = vm_box
+    socialmedia.vm.hostname = 'social-media'
+    socialmedia.vm.network "private_network", ip: "192.168.56.107"
+	socialmedia.vm.provision :shell, path: "script/social-media.sh"
+  end
+end
