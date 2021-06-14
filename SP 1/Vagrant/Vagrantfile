@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     landingpage.vm.box = vm_box
     landingpage.vm.hostname = 'landing-page'
     landingpage.vm.network "private_network", ip: "192.168.56.105"
-	landingpage.vm.provision :shell, path: "script/landing-page.sh"
+#	landingpage.vm.provision :shell, path: "script/landing-page.sh"
   end
   
   # setup vm2
@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
     wordpress.vm.box = vm_box
     wordpress.vm.hostname = 'wordpress'
     wordpress.vm.network "private_network", ip: "192.168.56.106"
-	wordpress.vm.provision :shell, path: "script/wordpress.sh"
+#	wordpress.vm.provision :shell, path: "script/wordpress.sh"
   end
   
   # setup vm3
@@ -23,6 +23,6 @@ Vagrant.configure("2") do |config|
     socialmedia.vm.box = vm_box
     socialmedia.vm.hostname = 'social-media'
     socialmedia.vm.network "private_network", ip: "192.168.56.107"
-	socialmedia.vm.provision :shell, path: "script/social-media.sh"
+#	socialmedia.vm.provision :shell, path: "script/social-media.sh"
   end
 end
