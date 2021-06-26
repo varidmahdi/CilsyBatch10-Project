@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+sudo apt-get -y update
+sudo apt-get -y install php apache2 mysql-client
+sudo apt-get -y install automake autotools-dev fuse g++ git libcurl4-gnutls-dev libfuse-dev libssl-dev libxml2-dev make
+pkg-config
+
+git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+cd s3fs-fuse
+./autogen.sh
+./configure --prefix=/usr --with-openssl
+make
+sudo make install
+sudo chmod 640 /etc/passwd-s3fs
+sudo mkdir /S3sosmed
+
+sudo s3fs storage-apps /S3sosmed -o passwd_file=/etc/passwd-s3fs -o url=https://s3.ap-southeast-1.amazonaws.com -ouid=1001,gid=1001,allow_other
+
+sudo mkdir /S3sosmed/sosial-media3
+sudo git clone https://github.com/varidmahdi/sosial-media.git /S3sosmed/sosial-media3
