@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: s-ingress
+  annotations:
+    ## Untuk menaikan batas upload file
+    nginx.org/client-max-body-size: "10m"
+    ## Memaksa jalan di https
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  rules:
+
+## Service Location n Characters
+  - host: ingress.farid-k8s.retiarno.my.id
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80
+      - path: /api/characters
+        backend:
+          serviceName: characters-service
+          servicePort: 8081
+      - path: /api/locations
+        backend:
+          serviceName: locations-service
+          servicePort: 8081
