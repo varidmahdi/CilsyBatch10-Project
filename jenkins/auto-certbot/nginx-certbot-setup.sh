@@ -1,4 +1,5 @@
 #!/bin/sh
+# For Ubuntu 20.04
 sudo apt install certbot python3-certbot-nginx -y
 sudo rm -rf /etc/nginx/sites-enabled/default
 sudo vim /etc/nginx/sites-available/jenkins.domain.id
